@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PizzaShop Console App</title>
   <link href="src/css/main.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500&display=swap" rel="stylesheet">
 </head>
 <body>
   <header class="navbar">
@@ -12,10 +13,11 @@
       <span>PizzaShop</span>
     </div>
     <nav class="navbar-links">
-      <a href="#">Sekcija1</a>
-      <a href="#">Sekcija2</a>
-      <a href="#">Sekcija3</a>
-      <a href="#">Sekcija4</a>
+      <a href="#download">Sākums</a>
+      <a href="#download">Par programmu</a>
+      <a href="#features">Lejupielādēt</a>
+      <a href="#install">Lietotaja ceļvedis</a>
+      <a href="#contacts">Kontakti</a>
     </nav>
     <div class="navbar-controls">
       <button class="language-switcher">LV/EN</button>
@@ -23,25 +25,26 @@
     </div>
   </header>
 
-    <!-- Hero (полноэкранная) -->
+    <!-- Hero секция с новыми классами -->
     <section class="hero full-width">
       <div class="hero-content">
-        <h1>Picas veikala konsoles lietotne</h1>
+        <h1 class="hero-title">Pica Veikals</h1> <!-- Изменил класс на hero-title -->
+        <p class="hero-subtitle">Konsoles lietotne picas pasūtīšanai</p>
       </div>
     </section>
   
     <!-- Секция 1 (узкая, с отступами 1:2.5:1) -->
     <section class="section narrow">
       <div class="section-content">
-        <h2>Sekcija 1</h2>
-        <p>Saturs šeit...</p>
+        <h2>Par programmu</h2>
+        <p>Pārvaldiet pasūtījumus, izdrukas un klientu datus vienkāršā konsoles interfeisā.</p>
       </div>
     </section>
   
     <!-- Секция 2 (широкая, почти на весь экран) -->
     <section class="section wide">
       <div class="section-content">
-        <h2>Sekcija 2</h2>
+        <h2>Lejupielādēt</h2>
         <p>Saturs šeit...</p>
       </div>
     </section>
@@ -49,13 +52,12 @@
     <!-- Секция 3 (узкая) -->
     <section class="section narrow">
       <div class="section-content">
-        <h2>Sekcija 3</h2>
+        <h2>Lietotaja ceļvedis</h2>
         <p>Saturs šeit...</p>
       </div>
     </section>
   
     <footer class="full-width">...</footer>
-  </main>
   <script src="src/js/main.js"></script>  <!-- Относительный путь -->
 </body>
 </html>

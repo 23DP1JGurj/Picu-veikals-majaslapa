@@ -3,13 +3,13 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
 }
 
 body {
   background-color: #0e1317;
   color: white;
   line-height: 1.6;
+  font-family: 'Mulish', sans-serif;
 }
 
 /* ===== ШАПКА (HEADER) ===== */
@@ -37,13 +37,18 @@ body {
 
 .navbar-links a {
   color: white;
+  font-family: 'Oswald', sans-serif;
+  font-size: 15px;
   text-decoration: none;
-  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
   transition: opacity 0.3s;
+  padding: 0.5rem 1rem;
 }
 
 .navbar-links a:hover {
   opacity: 0.8;
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .navbar-controls {
@@ -67,7 +72,7 @@ body {
 
 /* ===== ГЛАВНАЯ СЕКЦИЯ (HERO) ===== */
 .hero.full-width {
-  height: 1080px;
+  height: 800px;
   background-color: #0e1317;
   display: flex;
   align-items: center;
@@ -75,9 +80,31 @@ body {
   text-align: center;
 }
 
-.hero-content h1 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
+.hero-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.hero-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+  line-height: 1;
+  color: #FFFFFF;
+}
+
+.hero-subtitle {
+  font-family: 'Mulish', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  margin-top: 1rem;
+  opacity: 0.9;
+  color: #FFFFFF;
 }
 
 /* ===== СЕКЦИИ ===== */
@@ -85,7 +112,6 @@ body {
   padding: 5rem 0;
 }
 
-/* Узкие секции (50% ширины) */
 .section.narrow .section-content {
   width: 50%;
   margin: 0 auto;
@@ -93,14 +119,28 @@ body {
   padding: 2rem;
 }
 
-/* Широкие секции (сливаются с фоном + текст по центру) */
 .section.wide .section-content {
   width: 100%;
   max-width: 100%;
   padding: 2rem 0;
   background-color: transparent;
-  color: white;
-  text-align: center; /* Добавлено только это */
+  text-align: center;
+}
+
+.section-content h2 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 2rem;
+  color: #FFFFFF;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.section-content p {
+  font-family: 'Mulish', sans-serif;
+  font-size: 1rem;
+  color: #FFFFFF;
+  line-height: 1.6;
 }
 
 /* ===== ФУТЕР ===== */
@@ -130,8 +170,12 @@ footer.full-width {
     padding: 6rem 1rem;
   }
 
-  .hero-content h1 {
-    font-size: 2rem;
+  .hero-title {
+    font-size: 3rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.2rem;
   }
 }
 
