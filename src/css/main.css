@@ -86,15 +86,19 @@ body {
   padding: 0 2rem;
 }
 
-.hero-title {
+.hero-title,
+.section-content h2 {
   font-family: 'Oswald', sans-serif;
   font-size: 3.5rem;
   font-weight: 300;
-  text-transform: uppercase;
   letter-spacing: 1px;
   margin: 0;
   line-height: 1;
   color: #FFFFFF;
+}
+
+.hero-title {
+  font-size: 4.5rem; /* Было 3.5rem */
 }
 
 .hero-subtitle {
@@ -117,6 +121,16 @@ body {
   margin: 0 auto;
   background-color: #090c0f;
   padding: 2rem;
+  height: 300px;
+  text-align: center;
+}
+
+.section.narrow .section-content h2,
+.section.narrow .section-content p {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 80%; /* Опционально: ограничение ширины текста */
 }
 
 .section.wide .section-content {
@@ -132,7 +146,6 @@ body {
   font-size: 2rem;
   color: #FFFFFF;
   margin-bottom: 1.5rem;
-  text-transform: uppercase;
   letter-spacing: 1px;
 }
 

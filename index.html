@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="lv">  <!-- Латышский язык -->
+<html lang="lv">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PizzaShop Console App</title>
   <link href="src/css/main.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500&family=Mulish&display=swap" rel="stylesheet">
 </head>
 <body>
   <header class="navbar">
@@ -13,10 +13,10 @@
       <span>PizzaShop</span>
     </div>
     <nav class="navbar-links">
-      <a href="#download">Sākums</a>
-      <a href="#download">Par programmu</a>
-      <a href="#features">Lejupielādēt</a>
-      <a href="#install">Lietotaja ceļvedis</a>
+      <a href="#start">Sākums</a>
+      <a href="#about">Par programmu</a>
+      <a href="#download">Lejupielādēt</a>
+      <a href="#guide">Lietotāja ceļvedis</a>
       <a href="#contacts">Kontakti</a>
     </nav>
     <div class="navbar-controls">
@@ -25,39 +25,40 @@
     </div>
   </header>
 
-    <!-- Hero секция с новыми классами -->
+  <main>
     <section class="hero full-width">
       <div class="hero-content">
-        <h1 class="hero-title">Pica Veikals</h1> <!-- Изменил класс на hero-title -->
+        <h1 class="hero-title">Pica Veikals</h1>
         <p class="hero-subtitle">Konsoles lietotne picas pasūtīšanai</p>
       </div>
     </section>
-  
-    <!-- Секция 1 (узкая, с отступами 1:2.5:1) -->
-    <section class="section narrow">
+
+    <section id="about" class="section narrow">
       <div class="section-content">
         <h2>Par programmu</h2>
         <p>Pārvaldiet pasūtījumus, izdrukas un klientu datus vienkāršā konsoles interfeisā.</p>
       </div>
     </section>
-  
-    <!-- Секция 2 (широкая, почти на весь экран) -->
-    <section class="section wide">
+
+    <section id="download" class="section wide">
       <div class="section-content">
         <h2>Lejupielādēt</h2>
         <p>Saturs šeit...</p>
       </div>
     </section>
-  
-    <!-- Секция 3 (узкая) -->
-    <section class="section narrow">
+
+    <section id="guide" class="section narrow">
       <div class="section-content">
-        <h2>Lietotaja ceļvedis</h2>
+        <h2>Lietotāja ceļvedis</h2>
         <p>Saturs šeit...</p>
       </div>
     </section>
+  </main>
+
+  <footer class="full-width">
+    <p>© 2025 PizzaShop Console App</p>
+  </footer>
   
-    <footer class="full-width">...</footer>
-  <script src="src/js/main.js"></script>  <!-- Относительный путь -->
+  <script src="src/js/main.js"></script>
 </body>
 </html>
