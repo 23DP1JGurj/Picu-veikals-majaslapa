@@ -3,6 +3,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  transition: 
+    background-color 0.5s ease,
+    color 0.5s ease,
+    border-color 0.5s ease,
+    opacity 0.5s ease;
 }
 
 body {
@@ -12,7 +17,6 @@ body {
   font-family: 'Mulish', sans-serif;
   background-color: var(--bg-color);
   color: var(--text-color);
-  transition: background 0.3s ease, color 0.3s ease;
 }
 
 /* ===== ПЕРЕМЕННЫЕ ===== */
@@ -24,6 +28,15 @@ body {
   --navbar-footer-bg: #090c0f;
   --hero-bg: #0e1317; /* Для темной темы */
   --narrow-section-bg: #090c0f; /* Для темной темы */
+
+  --transition-theme: background-color 0.5s ease, 
+  color 0.5s ease, 
+  border-color 0.5s ease, 
+  opacity 0.5s ease;
+}
+
+* {
+transition: var(--transition-theme);
 }
 
 [data-theme="light"] {
@@ -63,12 +76,10 @@ body {
   color: var(--navbar-text-color) !important;
 }
 
-.navbar, footer.full-width {
-  background-color: var(--navbar-footer-bg);
-}
-
+.navbar,
+footer.full-width,
 .section.narrow .section-content {
-  background-color: var(--section-bg);
+  background-color: var(--navbar-footer-bg);
 }
 
 /* ===== ШАПКА (HEADER) ===== */
@@ -88,6 +99,15 @@ body {
 .navbar-links a,
 .navbar-controls button {
   color: var(--navbar-text-color);
+}
+
+.navbar-links a,
+.navbar-controls button {
+  transition: 
+    background-color 0.5s ease,
+    color 0.5s ease,
+    opacity 0.5s ease,
+    transform 0.3s ease !important; /* Сохраняем оригинальные анимации */
 }
 
 .navbar-logo span {
@@ -140,12 +160,11 @@ body {
 /* ===== ГЛАВНАЯ СЕКЦИЯ (HERO) ===== */
 .hero.full-width {
   height: 800px;
-  background-color: #0e1317;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  background-color: var(--hero-bg);
+  background-color: var(--hero-bg, #0e1317);
 }
 
 [data-theme="light"] {

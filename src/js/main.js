@@ -24,5 +24,5 @@ themeSwitcher.addEventListener('click', () => {
 });
 
 function updateThemeIcon(theme) {
-  themeSwitcher.textContent = theme === 'dark' ? '☀' : '🌙';
+  themeSwitcher.textContent = theme === 'dark' ? '☀️' : '🌙';
 }
