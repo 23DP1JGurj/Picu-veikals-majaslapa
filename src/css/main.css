@@ -76,6 +76,10 @@ transition: var(--transition-theme);
   color: var(--navbar-text-color) !important;
 }
 
+[data-translate] {
+  transition: opacity 0.3s ease;
+}
+
 .navbar,
 footer.full-width,
 .section.narrow .section-content {
@@ -116,10 +120,10 @@ footer.full-width,
 }
 
 .navbar-links {
-  display: flex;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-  justify-content: center;
+  gap: 1rem;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding: 0.5rem 0;
 }
 
 .navbar-links a {
@@ -144,6 +148,8 @@ footer.full-width,
 }
 
 .navbar-controls button {
+  min-width: 50px; /* Фиксированная ширина для стабильности */
+  text-align: center;
   background: transparent;
   color: white;
   border: none;
@@ -275,6 +281,8 @@ footer.full-width {
 
   .navbar-links {
     gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   .section.narrow .section-content {

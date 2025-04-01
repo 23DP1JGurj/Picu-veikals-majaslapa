@@ -8,7 +8,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500&family=Mulish&display=swap" rel="stylesheet">
 </head>
 <body data-theme="dark">
-</body>
   <header class="navbar">
     <div class="navbar-logo">
       <span>Picu Veikals</span>
@@ -21,8 +20,8 @@
       <a href="#contacts">Kontakti</a>
     </nav>
     <div class="navbar-controls">
-      <button class="language-switcher">LV/EN</button>
-      <button class="theme-switcher">☀/🌙</button>
+      <button class="language-switcher">LV</button>
+      <button class="theme-switcher">🌙</button>
     </div>
   </header>
 
@@ -36,30 +35,102 @@
 
     <section id="about" class="section narrow">
       <div class="section-content">
-        <h2>Par programmu</h2>
-        <p>Pārvaldiet pasūtījumus, izdrukas un klientu datus vienkāršā konsoles interfeisā.</p>
+        <h2 data-translate="about.title">Par programmu</h2>
+        <p data-translate="about.content">Pārvaldiet pasūtījumus, izdrukas un klientu datus vienkāršā konsoles interfeisā.</p>
       </div>
     </section>
 
     <section id="download" class="section wide">
       <div class="section-content">
-        <h2>Lejupielādēt</h2>
-        <p>Saturs šeit...</p>
+        <h2 data-translate="download.title">Lejupielādēt</h2>
+        <p data-translate="download.content">Saturs šeit...</p>
       </div>
     </section>
 
     <section id="guide" class="section narrow">
       <div class="section-content">
-        <h2>Lietotāja ceļvedis</h2>
-        <p>Saturs šeit...</p>
+        <h2 data-translate="guide.title">Lietotāja ceļvedis</h2>
+        <p data-translate="guide.content">Saturs šeit...</p>
       </div>
     </section>
   </main>
+
+  <section id="contacts" class="section wide">
+    <div class="section-content">
+      <h2 data-translate="contacts.title">Kontakti</h2>
+      <p data-translate="contacts.content">Saturs šeit...</p>
+    </div>
+  </section>
 
   <footer class="full-width">
     <p>© 2025 PizzaShop Console App</p>
   </footer>
   
+  <script id="translations" type="application/json">
+    {
+      "lv": {
+        "navbar": {
+          "logo": "Picu Veikals",
+          "links": ["Sākums", "Par programmu", "Lejupielādēt", "Lietotāja ceļvedis", "Kontakti"],
+          "language": "EN"
+        },
+        "hero": {
+          "title": "Picu Veikals",
+          "subtitle": "Konsoles lietotne picas pasūtīšanai"
+        },
+        "sections": {
+          "about": {
+            "title": "Par programmu",
+            "content": "Pārvaldiet pasūtījumus, izdrukas un klientu datus vienkāršā konsoles interfeisā."
+          },
+          "download": {
+            "title": "Lejupielādēt",
+            "content": "Lejupielādējiet programmu savai operētājsistēmai:"
+          },
+          "guide": {
+            "title": "Lietotāja ceļvedis",
+            "content": "Detalizēta lietošanas instrukcija un biežāk uzdotie jautājumi."
+          },
+          "contacts": {
+            "title": "Kontakti",
+            "content": "Jautājumu gadījumā sazinieties: support@pizzashop.lv"
+          }
+        },
+        "footer": "© 2025 PizzaShop Console App"
+      },
+      "en": {
+        "navbar": {
+          "logo": "PizzaShop",
+          "links": ["Home", "About", "Download", "Guide", "Contacts"],
+          "language": "LV"
+        },
+        "hero": {
+          "title": "Pizza Shop",
+          "subtitle": "Console application for pizza ordering"
+        },
+        "sections": {
+          "about": {
+            "title": "About",
+            "content": "Manage orders, printing and customer data in a simple console interface."
+          },
+          "download": {
+            "title": "Download",
+            "content": "Download for your operating system:"
+          },
+          "guide": {
+            "title": "User Guide",
+            "content": "Detailed instructions and frequently asked questions."
+          },
+          "contacts": {
+            "title": "Contacts",
+            "content": "For questions contact: support@pizzashop.com"
+          }
+        },
+        "footer": "© 2025 PizzaShop Console App"
+      }
+    }
+    </script>
+
   <script src="src/js/main.js"></script>
-</body>
-</html>
+  </body>
+  </html>
