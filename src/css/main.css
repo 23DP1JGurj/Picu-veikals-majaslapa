@@ -93,6 +93,11 @@ footer.full-width,
   gap: 1rem;
   background-color: var(--navbar-bg, var(--navbar-footer-bg));
   color: var(--navbar-text-color);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
 .navbar-logo span,
@@ -207,6 +212,10 @@ footer.full-width,
 }
 
 /* ===== СЕКЦИИ ===== */
+main {
+  margin-top: 80px; /* Высота хедера + отступ */
+}
+
 .section {
   padding: 5rem 0;
 }
@@ -274,6 +283,10 @@ footer.full-width {
   .navbar {
     flex-direction: column;
     padding: 1rem;
+  }
+
+  main {
+    margin-top: 100px; /* Увеличиваем отступ для мобильной версии */
   }
 
   .navbar-links {
