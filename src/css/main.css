@@ -56,10 +56,6 @@ transition: var(--transition-theme);
   color: var(--footer-text-color);
 }
 
-[data-theme="light"] .theme-switcher {
-  filter: invert(0); /* Возвращаем исходный цвет */
-}
-
 [data-theme="light"] .navbar {
   --navbar-text-color: #FF0000; /* Красный текст всегда */
   --navbar-hover-opacity: 0.8; /* Прозрачность при наведении */
@@ -102,7 +98,7 @@ footer.full-width,
 .navbar-logo span,
 .navbar-links a,
 .navbar-controls button {
-  color: var(--navbar-text-color);
+  color: var(--navbar-text-color) !important;
 }
 
 .navbar-links a,
@@ -156,10 +152,13 @@ footer.full-width,
   cursor: pointer;
   font-size: 1rem;
   padding: 0.3rem 0.6rem;
+  transition: all 0.3s ease !important;
+  transform: scale(1);
 }
 
 .navbar-controls button:hover {
   background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.05);
 }
 
 /* ===== ГЛАВНАЯ СЕКЦИЯ (HERO) ===== */
@@ -220,11 +219,10 @@ footer.full-width,
 .section.narrow .section-content {
   width: 50%;
   margin: 0 auto;
-  background-color: #090c0f;
+  background-color: var(--narrow-section-bg, #090c0f);
   padding: 2rem;
   height: 300px;
   text-align: center;
-  background-color: var(--narrow-section-bg);
 }
 
 .section.narrow .section-content h2,

@@ -62,3 +62,31 @@ languageSwitcher.addEventListener('click', () => {
 // Инициализация языка
 const savedLang = localStorage.getItem('language') || 'lv';
 updateContent(savedLang);
+
+// Анимация появления секций
+function animateOnScroll() {
+  const sections = document.querySelectorAll('.section');
+  
+  sections.forEach(section => {
+    const sectionTop = section.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+    
+    if (sectionTop < windowHeight * 0.75) {
+      section.style.opacity = '1';
+      section.style.transform = 'translateY(0)';
+    }
+  });
+}
+
+// Инициализация
+document.addEventListener('DOMContentLoaded', () => {
+  // Устанавливаем начальные стили для анимации
+  document.querySelectorAll('.section').forEach(section => {
+    section.style.opacity = '0';
+    section.style.transform = 'translateY(20px)';
+    section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+  });
+  
+  window.addEventListener('scroll', animateOnScroll);
+  animateOnScroll(); // Запускаем сразу для видимых секций
+});
