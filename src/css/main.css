@@ -35,6 +35,12 @@ body {
   opacity 0.5s ease;
 }
 
+[data-theme="dark"] .navbar-links a:hover {
+  color: #c1976d !important;
+  opacity: 1 !important;
+  background: transparent !important;
+}
+
 * {
 transition: var(--transition-theme);
 }
@@ -162,8 +168,7 @@ footer.full-width,
 }
 
 .navbar-controls button:hover {
-  background: rgba(255, 255, 255, 0.1);
-  transform: scale(1.05);
+  background: transparent !important;
 }
 
 /* ===== ГЛАВНАЯ СЕКЦИЯ (HERO) ===== */
@@ -318,4 +323,19 @@ footer.full-width {
     flex-direction: column;
     align-items: center;
   }
+}
+
+/* Плавная прокрутка для всей страницы */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Корректировка позиции для фиксированного хедера */
+section::before {
+  content: '';
+  display: block;
+  height: 80px; /* Высота хедера */
+  margin-top: -80px; /* Отрицательный отступ */
+  visibility: hidden;
+  pointer-events: none;
 }

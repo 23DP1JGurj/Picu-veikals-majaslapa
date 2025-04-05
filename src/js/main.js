@@ -90,3 +90,22 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', animateOnScroll);
   animateOnScroll(); // Запускаем сразу для видимых секций
 });
+
+document.querySelectorAll('.nav-link').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    const targetId = this.getAttribute('href');
+    const targetSection = document.querySelector(targetId);
+    const headerHeight = document.querySelector('.navbar').offsetHeight;
+    
+    const targetPosition = targetSection.offsetTop - headerHeight;
+    
+    window.scrollTo({
+      top: targetPosition,
+      behavior: 'smooth'
+    });
+    
+    // Обновляем URL без перезагрузки
+    history.pushState(null, null, targetId);
+  });
+});
