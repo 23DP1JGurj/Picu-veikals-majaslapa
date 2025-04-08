@@ -1,8 +1,6 @@
-// Переключение темы
 const themeSwitcher = document.querySelector('.theme-switcher');
 const body = document.body;
 
-// Проверяем сохраненную тему
 const savedTheme = localStorage.getItem('theme');
 if (savedTheme) {
   body.setAttribute('data-theme', savedTheme);
@@ -22,34 +20,28 @@ function updateThemeIcon(theme) {
   themeSwitcher.textContent = theme === 'dark' ? '☀️' : '🌙';
 }
 
-// Language Switcher
 const languageSwitcher = document.querySelector('.language-switcher');
 let currentLang = 'lv';
 
 function updateContent(lang) {
   const translations = JSON.parse(document.getElementById('translations').textContent)[lang];
-  
-  // Обновление кнопки языка
+
   languageSwitcher.textContent = translations.navbar.language;
-  
-  // Навигация
+
   document.querySelector('.navbar-logo span').textContent = translations.navbar.logo;
   document.querySelectorAll('.navbar-links a').forEach((link, index) => {
     link.textContent = translations.navbar.links[index];
   });
-  
-  // Hero Section
+
   document.querySelector('.hero-title').textContent = translations.hero.title;
   document.querySelector('.hero-subtitle').textContent = translations.hero.subtitle;
-  
-  // Все секции
+
   document.querySelectorAll('[data-translate]').forEach(element => {
     const key = element.dataset.translate;
     const [section, field] = key.split('.');
     element.textContent = translations.sections[section][field];
   });
-  
-  // Футер
+
   document.querySelector('footer p').textContent = translations.footer;
 }
 
@@ -59,11 +51,9 @@ languageSwitcher.addEventListener('click', () => {
   updateContent(currentLang);
 });
 
-// Инициализация языка
 const savedLang = localStorage.getItem('language') || 'lv';
 updateContent(savedLang);
 
-// Анимация появления секций
 function animateOnScroll() {
   const sections = document.querySelectorAll('.section');
   
@@ -78,9 +68,7 @@ function animateOnScroll() {
   });
 }
 
-// Инициализация
 document.addEventListener('DOMContentLoaded', () => {
-  // Устанавливаем начальные стили для анимации
   document.querySelectorAll('.section').forEach(section => {
     section.style.opacity = '0';
     section.style.transform = 'translateY(20px)';
@@ -88,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   
   window.addEventListener('scroll', animateOnScroll);
-  animateOnScroll(); // Запускаем сразу для видимых секций
+  animateOnScroll(); 
 });
 
 document.querySelectorAll('.nav-link').forEach(link => {
@@ -105,7 +93,63 @@ document.querySelectorAll('.nav-link').forEach(link => {
       behavior: 'smooth'
     });
     
-    // Обновляем URL без перезагрузки
     history.pushState(null, null, targetId);
   });
 });
+
+const pizzas = [
+  'src/image/pica1.jpg',
+  'src/image/pica2.jpg',
+  'src/image/pica3.jpg',
+  'src/image/pica4.jpg',
+  'src/image/pica5.jpg',
+  'src/image/pica6.jpg',
+  'src/image/pica7.jpg',
+  'src/image/pica8.jpg',
+  'src/image/pica9.jpg',
+  'src/image/pica10.jpg'
+];
+
+let topIndex = 0;   
+let mainIndex = 1;   
+let bottomIndex = 2; 
+
+let nextIndex = 9;
+
+const topElem = document.querySelector('.pizza-top img');
+const mainElem = document.querySelector('.pizza-main img');
+const bottomElem = document.querySelector('.pizza-bottom img');
+
+let autoRotate = setInterval(updatePizzas, 5000);
+
+function updatePizzas() {
+  const newTopIndex = nextIndex;
+  const newMainIndex = topIndex;
+  const newBottomIndex = mainIndex;
+  
+  topIndex = newTopIndex;
+  mainIndex = newMainIndex;
+  bottomIndex = newBottomIndex;
+  
+  nextIndex--;
+  if (nextIndex < 0) {
+    nextIndex = pizzas.length - 1; 
+  }
+  
+  topElem.src = pizzas[topIndex];
+  topElem.alt = 'Pizza ' + (topIndex + 1);
+  
+  mainElem.src = pizzas[mainIndex];
+  mainElem.alt = 'Pizza ' + (mainIndex + 1);
+  
+  bottomElem.src = pizzas[bottomIndex];
+  bottomElem.alt = 'Pizza ' + (bottomIndex + 1);
+}
+
+const interactiveArea = document.querySelector('.pizza-interactive');
+interactiveArea.addEventListener('wheel', function(event) {
+  event.preventDefault(); 
+  clearInterval(autoRotate); 
+  updatePizzas(); 
+  autoRotate = setInterval(updatePizzas, 5000); 
+}, { passive: false });
