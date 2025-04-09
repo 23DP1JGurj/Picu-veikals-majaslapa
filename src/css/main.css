@@ -171,7 +171,7 @@ footer.full-width,
 }
 
 .hero.full-width {
-  height: 800px;
+  height: 850px;
   display: flex;
   overflow: hidden;
   width: 100%;
@@ -302,6 +302,30 @@ footer.full-width {
     padding: 1rem;
   }
 
+  .pizza-main {
+    width: 200px;
+    height: 200px;
+    top: calc(50% - 12.5vw);
+  }
+
+  .pizza-side {
+    width: 6.25vw;
+    height: 12.5vw;
+  }
+  
+  .pizza-side img {
+    width: 12.5vw;
+    height: 12.5vw;
+  }
+  
+  .pizza-top {
+    top: calc(50% - 12.5vw - 13.75vw);
+  }
+  
+  .pizza-bottom {
+    top: calc(50% + 12.5vw + 1.25vw);
+  }
+
   main {
     margin-top: 100px; 
   }
@@ -348,6 +372,29 @@ footer.full-width {
   }
 }
 
+@media (max-width: 1200px) {
+  .hero-title {
+    font-size: 3.5rem !important;
+  }
+  
+  .pizza-main {
+    width: 30vw;
+    height: 30vw;
+    top: calc(50% - 15vw);
+  }
+}
+
+@media (max-width: 900px) {
+  .pizza-main {
+    opacity: 0.9;
+    right: 10px;
+  }
+  
+  .hero-title {
+    font-size: 3rem !important;
+  }
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -373,7 +420,7 @@ section::before {
 .carousel {
   position: absolute;
   right: 0;
-  top: 50%;
+  top: 49%;
   transform: translateY(-50%);
   width: 30%;
   height: 80%;
@@ -381,11 +428,11 @@ section::before {
 
 .pizza-main {
   position: absolute;
-  width: 200px;
-  height: 200px;
+  width: clamp(300px, 28vw, 400px); 
+  height: clamp(300px, 28vw, 400px);
   right: 10%;
-  top: calc(50% - 100px);
-  transition: opacity 0.5s;
+  top: calc(50% - clamp(150px, 14vw, 200px));
+  transition: all 0.3s ease;
 }
 
 .pizza-main img {
@@ -396,24 +443,24 @@ section::before {
 
 .pizza-side {
   position: absolute;
-  width: 50px;
-  height: 100px;
+  width: clamp(75px, 7vw, 100px);
+  height: clamp(150px, 14vw, 200px);
   overflow: hidden;
   transition: opacity 0.5s;
 }
 .pizza-side img {
-  width: 100px;
-  height: 100px;
+  width: clamp(150px, 14vw, 200px);
+  height: clamp(150px, 14vw, 200px);
   object-fit: cover;
 }
 
 .pizza-top {
-  right: 0;
-  top: calc(50% - 100px - 110px); 
+  right: 0px;
+  top: calc(50% - clamp(150px, 14vw, 200px) - clamp(165px, 15vw, 220px));
 }
 
 .pizza-bottom {
-  right: 0;
-  top: calc(50% + 100px + 10px); 
+  right: 0px;
+  top: calc(50% + clamp(150px, 14vw, 200px) + clamp(15px, 1.5vw, 20px));
 }
 } 
