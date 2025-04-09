@@ -24,7 +24,7 @@ const languageSwitcher = document.querySelector('.language-switcher');
 let currentLang = 'lv';
 
 function updateContent(lang) {
-  const translations = JSON.parse(document.getElementById('translations').textContent)[lang];
+  const translations = window.translations[lang];
 
   languageSwitcher.textContent = translations.navbar.language;
 
