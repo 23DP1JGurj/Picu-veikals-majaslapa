@@ -12,7 +12,15 @@ window.translations = {
       "sections": {
         "about": {
           "title": "Par programmu",
-          "content": "Pārvaldiet pasūtījumus, izdrukas un klientu datus vienkāršā konsoles interfeisā."
+          "content": "Pārvaldiet pasūtījumus, izdrukas un klientu datus vienkāršā konsoles interfeisā.",
+          "title1": "Skatīt picu katalogu",
+          "title2": "Pasūtīt picu",
+          "title3": "Atstāt atsauksmi",
+          "title4": "Profils",
+          "content1": "Apskati visu mūsu piedāvāto picu klāstu ar aprakstiem un cenām.",
+          "content2": "Ērti izvēlies un pasūti savu iecienītāko picu.",
+          "content3": "Dalies ar savu pieredzi un palīdzē mums uzlabot servisu.",
+          "content4": "Pārvaldi savu kontu, skatīt pasūtījumu vēsturi."
         },
         "download": {
           "title": "Lejupielādēt",
@@ -42,7 +50,15 @@ window.translations = {
       "sections": {
         "about": {
           "title": "About",
-          "content": "Manage orders, printing and customer data in a simple console interface."
+          "content": "Manage orders, printing and customer data in a simple console interface.",
+          "title1": "View Pizza Catalog",
+          "title2": "Order Pizza",
+          "title3": "Leave a Review",
+          "title4": "Profile",
+          "content1": "Browse our full range of pizzas with descriptions and prices.",
+          "content2": "Easily choose and order your favorite pizza.",
+          "content3": "Share your experience and help us improve our service.",
+          "content4": "Manage your account, view order history."
         },
         "download": {
           "title": "Download",

@@ -96,3 +96,80 @@ document.querySelectorAll('.nav-link').forEach(link => {
     history.pushState(null, null, targetId);
   });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+  const miniSections = document.querySelectorAll('.mini-section');
+  const sectionContent = document.querySelector('.section-content');
+
+  miniSections.forEach((section, index) => {
+    section.addEventListener('mouseenter', () => {
+      miniSections.forEach(sec => {
+        sec.classList.remove('active');
+        sec.style.left = '';
+        sec.style.width = '';
+        sec.style.position = 'relative';
+        sec.style.zIndex = 1;
+      });
+
+      const containerRect = sectionContent.getBoundingClientRect();
+      const sectionRect   = section.getBoundingClientRect();
+      const containerWidth = containerRect.width;
+      const offsetLeft = sectionRect.left - containerRect.left;
+
+      section.style.position = 'absolute';
+      section.style.zIndex = 10;
+
+      let newLeft = offsetLeft;
+      let newWidth = sectionRect.width;
+
+      switch (index) {
+        case 0:
+          newLeft = offsetLeft; 
+          newWidth = containerWidth - offsetLeft - (containerWidth * 0.07);
+          break;
+
+        case 1: {
+          const leftShift = containerWidth * 0.25;
+          newLeft = offsetLeft - leftShift;
+          if (newLeft < 0) newLeft = 0;
+          newWidth = sectionRect.width + leftShift + (containerWidth * 0.40);
+          if (newLeft + newWidth > containerWidth) {
+            newWidth = containerWidth - newLeft;
+          }
+          break;
+        }
+        case 2: {
+          const leftShift = containerWidth * 0.40;
+          newLeft = offsetLeft - leftShift;
+          if (newLeft < 0) newLeft = 0;
+          newWidth = sectionRect.width + leftShift + (containerWidth * 0.10);
+          if (newLeft + newWidth > containerWidth) {
+            newWidth = containerWidth - newLeft;
+          }
+          break;
+        }
+        case 3: {
+          const leftShift = containerWidth * 0.40;
+          newLeft = offsetLeft - leftShift;
+          if (newLeft < 0) {
+            newLeft = 0;
+          }
+          newWidth = sectionRect.width + (offsetLeft - newLeft);
+          break;
+        }
+      }
+
+      section.style.left  = newLeft + 'px';
+      section.style.width = newWidth + 'px';
+      section.classList.add('active');
+    });
+
+    section.addEventListener('mouseleave', () => {
+      section.classList.remove('active');
+      section.style.left = '';
+      section.style.width = '';
+      section.style.position = 'relative';
+      section.style.zIndex = 1;
+    });
+  });
+});
