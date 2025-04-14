@@ -99,77 +99,59 @@ document.querySelectorAll('.nav-link').forEach(link => {
 
 document.addEventListener("DOMContentLoaded", function () {
   const miniSections = document.querySelectorAll('.mini-section');
-  const sectionContent = document.querySelector('.section-content');
+  const container = document.querySelector('.mini-container');
+  const gap = 20; // Соответствует CSS gap
+
+  const expansionSettings = [
+    { expandLeft: 0, expandRight: 140 },    // Секция 1
+    { expandLeft: 50, expandRight: 90 },    // Секция 2
+    { expandLeft: 100, expandRight: 40 },    // Секция 3
+    { expandLeft: 140, expandRight: 0 }     // Секция 4
+  ];
 
   miniSections.forEach((section, index) => {
-    section.addEventListener('mouseenter', () => {
-      miniSections.forEach(sec => {
-        sec.classList.remove('active');
-        sec.style.left = '';
-        sec.style.width = '';
-        sec.style.position = 'relative';
-        sec.style.zIndex = 1;
-      });
-
-      const containerRect = sectionContent.getBoundingClientRect();
-      const sectionRect   = section.getBoundingClientRect();
-      const containerWidth = containerRect.width;
-      const offsetLeft = sectionRect.left - containerRect.left;
-
-      section.style.position = 'absolute';
-      section.style.zIndex = 10;
-
-      let newLeft = offsetLeft;
-      let newWidth = sectionRect.width;
-
-      switch (index) {
-        case 0:
-          newLeft = offsetLeft; 
-          newWidth = containerWidth - offsetLeft - (containerWidth * 0.07);
-          break;
-
-        case 1: {
-          const leftShift = containerWidth * 0.25;
-          newLeft = offsetLeft - leftShift;
-          if (newLeft < 0) newLeft = 0;
-          newWidth = sectionRect.width + leftShift + (containerWidth * 0.40);
-          if (newLeft + newWidth > containerWidth) {
-            newWidth = containerWidth - newLeft;
-          }
-          break;
-        }
-        case 2: {
-          const leftShift = containerWidth * 0.40;
-          newLeft = offsetLeft - leftShift;
-          if (newLeft < 0) newLeft = 0;
-          newWidth = sectionRect.width + leftShift + (containerWidth * 0.10);
-          if (newLeft + newWidth > containerWidth) {
-            newWidth = containerWidth - newLeft;
-          }
-          break;
-        }
-        case 3: {
-          const leftShift = containerWidth * 0.40;
-          newLeft = offsetLeft - leftShift;
-          if (newLeft < 0) {
-            newLeft = 0;
-          }
-          newWidth = sectionRect.width + (offsetLeft - newLeft);
-          break;
-        }
-      }
-
-      section.style.left  = newLeft + 'px';
-      section.style.width = newWidth + 'px';
-      section.classList.add('active');
-    });
-
-    section.addEventListener('mouseleave', () => {
-      section.classList.remove('active');
-      section.style.left = '';
-      section.style.width = '';
-      section.style.position = 'relative';
-      section.style.zIndex = 1;
-    });
+    section.dataset.index = index;
+    
+    section.addEventListener('mouseenter', () => handleHover(section, index));
+    section.addEventListener('mouseleave', () => handleLeave(section));
   });
+
+  function handleHover(section, index) {
+    const wrappers = document.querySelectorAll('.mini-section-wrapper');
+    const settings = expansionSettings[index];
+    
+    wrappers.forEach(wrapper => {
+      wrapper.style.transition = 'flex 0.4s ease';
+      wrapper.style.flex = '1';
+    });
+
+    const activeWrapper = section.parentElement;
+    activeWrapper.style.flex = `
+      ${1 + (settings.expandLeft + settings.expandRight)/100}
+    `;
+
+    section.style.zIndex = '100';
+    section.style.width = `
+      calc(100% + 
+      ${settings.expandLeft}% + 
+      ${settings.expandRight}% + 
+      ${gap * (settings.expandLeft + settings.expandRight)/100}px)
+    `;
+    section.style.left = `-${settings.expandLeft}%`;
+    section.classList.add('expanded');
+  }
+
+  function handleLeave(section) {
+    const wrappers = document.querySelectorAll('.mini-section-wrapper');
+    
+    wrappers.forEach(wrapper => {
+      wrapper.style.flex = '1';
+      wrapper.style.transition = 'none';
+    });
+
+    section.style.zIndex = '1';
+    section.style.width = '100%';
+    section.style.left = '0';
+    section.classList.remove('expanded');
+  }
 });
