@@ -20,6 +20,7 @@ body {
 }
 
 :root {
+  --navbar-height: 100px;
   --navbar-text-color: #FFFFFF;
   --bg-color: #161e24;
   --section-bg: #0e1318;
@@ -90,7 +91,7 @@ footer.full-width,
 
 .navbar {
   background-color: #090c0f;
-  padding: 1rem 2rem;
+  padding: 1rem 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -171,6 +172,7 @@ footer.full-width,
 }
 
 .hero.full-width {
+  padding-top: var(--navbar-height);
   height: 850px;
   display: flex;
   overflow: hidden;
@@ -322,6 +324,7 @@ footer.full-width {
   .hero.full-width {
     height: auto;
     padding: 6rem 1rem;
+    padding-top: 120px;
   }
 
   .hero-title {
