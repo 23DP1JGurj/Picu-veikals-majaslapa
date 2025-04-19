@@ -1,24 +1,20 @@
-const themeSwitcher = document.querySelector('.theme-switcher');
-const body = document.body;
+(function() {
+  const themeSwitcher = document.querySelector('.theme-switcher');
+  const body = document.body;
 
-const savedTheme = localStorage.getItem('theme');
-if (savedTheme) {
-  body.setAttribute('data-theme', savedTheme);
-  updateThemeIcon(savedTheme);
-}
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) {
+    body.setAttribute('data-theme', savedTheme);
+    themeSwitcher.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+  }
 
-themeSwitcher.addEventListener('click', () => {
-  const currentTheme = body.getAttribute('data-theme') || 'dark';
-  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-  
-  body.setAttribute('data-theme', newTheme);
-  localStorage.setItem('theme', newTheme);
-  updateThemeIcon(newTheme);
-});
-
-function updateThemeIcon(theme) {
-  themeSwitcher.textContent = theme === 'dark' ? '☀️' : '🌙';
-}
+  themeSwitcher.addEventListener('click', () => {
+    const current = body.getAttribute('data-theme') || 'dark';
+    const next = current === 'dark' ? 'light' : 'dark';
+    body.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    themeSwitcher.textContent = next === 'dark' ? '☀️' : '🌙';
+  });
 
 const languageSwitcher = document.querySelector('.language-switcher');
 let currentLang = 'lv';
@@ -69,89 +65,39 @@ function animateOnScroll() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.section').forEach(section => {
-    section.style.opacity = '0';
-    section.style.transform = 'translateY(20px)';
-    section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-  });
-  
-  window.addEventListener('scroll', animateOnScroll);
-  animateOnScroll(); 
-});
-
-document.querySelectorAll('.nav-link').forEach(link => {
-  link.addEventListener('click', function(e) {
-    e.preventDefault();
-    const targetId = this.getAttribute('href');
-    const targetSection = document.querySelector(targetId);
-    const headerHeight = document.querySelector('.navbar').offsetHeight;
-    
-    const targetPosition = targetSection.offsetTop - headerHeight;
-    
-    window.scrollTo({
-      top: targetPosition,
-      behavior: 'smooth'
-    });
-    
-    history.pushState(null, null, targetId);
-  });
-});
-
-document.addEventListener("DOMContentLoaded", function () {
   const miniSections = document.querySelectorAll('.mini-section');
-  const container = document.querySelector('.mini-container');
-  const gap = 20; // Соответствует CSS gap
+  const wrappers = document.querySelectorAll('.mini-section-wrapper');
+
+  wrappers.forEach(w => w.style.transition = 'flex 0.4s ease');
 
   const expansionSettings = [
-    { expandLeft: 0, expandRight: 140 },    // Секция 1
-    { expandLeft: 50, expandRight: 90 },    // Секция 2
-    { expandLeft: 100, expandRight: 40 },    // Секция 3
-    { expandLeft: 140, expandRight: 0 }     // Секция 4
+    { left: 0, right: 137 },
+    { left: 47, right: 91 },
+    { left: 91.5, right: 45.5 },
+    { left: 137, right: -2 }
   ];
 
   miniSections.forEach((section, index) => {
-    section.dataset.index = index;
-    
-    section.addEventListener('mouseenter', () => handleHover(section, index));
-    section.addEventListener('mouseleave', () => handleLeave(section));
+    const wrapper = section.parentElement;
+    section.addEventListener('mouseenter', () => {
+      wrappers.forEach(w => w.style.flex = '1');
+      const settings = expansionSettings[index];
+      const flexVal = 1 + (settings.left + settings.right) / 100;
+      wrapper.style.flex = flexVal;
+
+      section.style.setProperty('--expand-left', `${settings.left}%`);
+      section.style.setProperty('--expand-right', `${settings.right}%`);
+
+      section.style.width = `calc(100% + ${settings.left}% + ${settings.right}%)`;
+      section.style.left  = `-${settings.left}%`;
+      section.classList.add('expanded');
+    });
+    section.addEventListener('mouseleave', () => {
+      wrappers.forEach(w => w.style.flex = '1');
+      section.style.width = '100%';
+      section.style.left = '0';
+      section.classList.remove('expanded');
+    });
   });
-
-  function handleHover(section, index) {
-    const wrappers = document.querySelectorAll('.mini-section-wrapper');
-    const settings = expansionSettings[index];
-    
-    wrappers.forEach(wrapper => {
-      wrapper.style.transition = 'flex 0.4s ease';
-      wrapper.style.flex = '1';
-    });
-
-    const activeWrapper = section.parentElement;
-    activeWrapper.style.flex = `
-      ${1 + (settings.expandLeft + settings.expandRight)/100}
-    `;
-
-    section.style.zIndex = '100';
-    section.style.width = `
-      calc(100% + 
-      ${settings.expandLeft}% + 
-      ${settings.expandRight}% + 
-      ${gap * (settings.expandLeft + settings.expandRight)/100}px)
-    `;
-    section.style.left = `-${settings.expandLeft}%`;
-    section.classList.add('expanded');
-  }
-
-  function handleLeave(section) {
-    const wrappers = document.querySelectorAll('.mini-section-wrapper');
-    
-    wrappers.forEach(wrapper => {
-      wrapper.style.flex = '1';
-      wrapper.style.transition = 'none';
-    });
-
-    section.style.zIndex = '1';
-    section.style.width = '100%';
-    section.style.left = '0';
-    section.classList.remove('expanded');
-  }
 });
+})();
