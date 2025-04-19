@@ -49,7 +49,7 @@ window.translations = {
       },
       "sections": {
         "about": {
-          "title": "About",
+          "title": "About program",
           "content": "Manage orders, printing and customer data in a simple console interface.",
           "title1": "View Pizza Catalog",
           "title2": "Order Pizza",
