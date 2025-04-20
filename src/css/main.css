@@ -56,10 +56,10 @@ body {
   --bg-color: #FFFFFF;
   --navbar-text-color: #FF0000;
   --navbar-bg: #FFFFFF;
-  --section-bg: #f5f5f5;
+  --section-bg: #fde1b9;
   --text-color: #000000;
   --navbar-footer-bg: #fde1b9; 
-  --hero-bg: #fb9300; 
+  --hero-bg: #ffa82f; 
   --narrow-section-bg: #fde1b9; 
   --footer-text-color: #000000; 
   --mini-bg: #fde1b9;
@@ -476,6 +476,7 @@ section::before {
   max-height: 0;
   overflow: hidden;
   transition: opacity 0.5s ease, max-height 0.5s ease;
+  font-weight: 300;
 }
 
 .mini-section .description p {
@@ -520,20 +521,44 @@ section::before {
   height: 120px;
   margin: 0 auto;
   position: relative;
-}
-
-#download-btn {
-  width: 70px;
-  height: 100px;
-  position: absolute;
-  top: 0;
-  left: calc(50% - 35px);
-  transition: left 0.4s ease;
   cursor: pointer;
 }
 
+#download-btn {
+  width: 200px;
+  height: 70px;
+  align-items: center;
+  cursor: pointer;
+  justify-content: center;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 300;
+  letter-spacing: 1px;
+  border-radius: 2rem;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.3s ease,
+  color 0.3s ease,
+  border-color 0.3s ease,
+  opacity 0.3s ease;
+  z-index: 10;
+  position: absolute;
+  display: flex;
+  margin-left: 25%;
+}
+
+body[data-theme="dark"] #download-btn {
+  background-color: var(--section-bg); 
+  color:            var(--text-color);  
+  border:           1px solid var(--mini-outline);
+}
+
+body[data-theme="light"] #download-btn {
+  background-color: var(--section-bg);   
+  color:            var(--text-color);    
+  border:           1px solid var(--mini-outline); 
+}
+
 .download-wrapper.active #download-btn {
-  left: calc(100% - 70px);
+  opacity: 0;
 }
 
 .road {
@@ -542,15 +567,29 @@ section::before {
   left: 0;
   transform: translateY(-50%);
   width: 400px;
-  height: 4px;
-  background: #ccc;
+  height: auto;
   opacity: 0;
   transition: opacity 0.3s ease;
+  margin-top: 10px;
 }
 
 .download-wrapper.active .road {
   opacity: 1;
 }
+
+.ascii-road {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: monospace;
+  white-space: pre;
+  pointer-events: none;
+}
+
 
 .truck {
   position: absolute;
@@ -562,6 +601,7 @@ section::before {
   font-size: 1.2rem;
   pointer-events: none;
   opacity: 0;
+  transition: opacity 0s ease;
 }
 
 .download-wrapper.active .truck {
