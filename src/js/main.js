@@ -180,3 +180,25 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 })();
 
+document.addEventListener('DOMContentLoaded', () => {
+  const slider = document.querySelector('.guide-slider .slides-wrapper');
+  const slides = Array.from(slider.children);
+  const prevBtn = document.querySelector('.guide-slider .prev');
+  const nextBtn = document.querySelector('.guide-slider .next');
+  let currentIndex = 0;
+
+  function updateSlider() {
+    const offset = -currentIndex * 100;
+    slider.style.transform = `translateX(${offset}%)`;
+  }
+
+  prevBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+    updateSlider();
+  });
+
+  nextBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % slides.length;
+    updateSlider();
+  });
+});
