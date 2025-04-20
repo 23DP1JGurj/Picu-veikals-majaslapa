@@ -20,11 +20,11 @@ window.translations = {
           "content1": "Apskati visu mūsu piedāvāto picu klāstu ar aprakstiem un cenām.",
           "content2": "Ērti izvēlies un pasūti savu iecienītāko picu.",
           "content3": "Dalies ar savu pieredzi un palīdzē mums uzlabot servisu.",
-          "content4": "Pārvaldi savu kontu, skatīt pasūtījumu vēsturi."
+          "content4": "Pārvaldi savu kontu. Skatīt pasūtījumu vēsturi."
         },
         "download": {
           "title": "Lejupielādēt",
-          "content": "Lejupielādējiet programmu savai operētājsistēmai:"
+          "button": "Lejupielādēt programmu"
         },
         "guide": {
           "title": "Lietotāja ceļvedis",
@@ -58,11 +58,11 @@ window.translations = {
           "content1": "Browse our full range of pizzas with descriptions and prices.",
           "content2": "Easily choose and order your favorite pizza.",
           "content3": "Share your experience and help us improve our service.",
-          "content4": "Manage your account, view order history."
+          "content4": "Manage your account. View order history."
         },
         "download": {
           "title": "Download",
-          "content": "Download for your operating system:"
+          "button": "Download program"
         },
         "guide": {
           "title": "User Guide",

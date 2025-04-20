@@ -514,3 +514,76 @@ section::before {
   transform: translateY(0);
   opacity: 1;
 }
+
+.download-wrapper {
+  width: 400px;
+  height: 120px;
+  margin: 0 auto;
+  position: relative;
+}
+
+#download-btn {
+  width: 70px;
+  height: 100px;
+  position: absolute;
+  top: 0;
+  left: calc(50% - 35px);
+  transition: left 0.4s ease;
+  cursor: pointer;
+}
+
+.download-wrapper.active #download-btn {
+  left: calc(100% - 70px);
+}
+
+.road {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 400px;
+  height: 4px;
+  background: #ccc;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.download-wrapper.active .road {
+  opacity: 1;
+}
+
+.truck {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.download-wrapper.active .truck {
+  opacity: 1;
+  animation: drive 2s linear forwards;
+}
+
+@keyframes drive {
+  from { left: 0; }
+  to   { left: 100%; }
+}
+
+.truck img {
+  width: 40px;
+  height: auto;
+}
+
+.truck .percent {
+  margin-left: -10px;
+  color: #000;
+  font-weight: bold;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 2px 4px;
+  border-radius: 3px;
+}

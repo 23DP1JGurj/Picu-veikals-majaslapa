@@ -101,3 +101,84 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 })();
+
+(function() {
+  const btn = document.getElementById('download-btn');
+  const wrapper = document.querySelector('.download-wrapper');
+  const road = document.querySelector('.road');
+  const truck = document.querySelector('.truck');
+  const percentSpan = truck.querySelector('.percent');
+
+  const fileUrl = 'src/app/app.zip'; // Укажите путь к вашему zip-файлу
+  const fileName = 'app.zip';
+
+  btn.addEventListener('click', () => {
+    btn.disabled = true;
+    wrapper.classList.add('active');
+
+    // Start fake progress animation over 2s
+    const start = performance.now();
+    function animateProgress(now) {
+      const elapsed = now - start;
+      const percent = Math.min(100, Math.round((elapsed / 2000) * 100));
+      percentSpan.textContent = percent + '%';
+      if (elapsed < 2000) {
+        requestAnimationFrame(animateProgress);
+      }
+    }
+    requestAnimationFrame(animateProgress);
+
+    // Prepare XHR to download blob
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', fileUrl, true);
+    xhr.responseType = 'blob';
+
+    let blobData = null;
+    xhr.onload = () => {
+      if (xhr.status === 200) {
+        blobData = xhr.response;
+      }
+    };
+    xhr.onerror = () => {
+      alert('Ошибка загрузки файла.');
+      cleanup();
+    };
+    xhr.send();
+
+    // When truck animation ends (2s), trigger download
+    truck.addEventListener('animationend', function handler() {
+      truck.removeEventListener('animationend', handler);
+      // Trigger download if blob ready, else wait briefly
+      if (blobData) {
+        downloadBlob(blobData);
+      } else {
+        // Poll until blobData arrives
+        const check = setInterval(() => {
+          if (blobData) {
+            clearInterval(check);
+            downloadBlob(blobData);
+          }
+        }, 100);
+      }
+    });
+
+    function downloadBlob(blob) {
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = fileName;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      cleanup();
+    }
+
+    function cleanup() {
+      wrapper.classList.remove('active');
+      btn.disabled = false;
+      truck.style.animation = 'none';
+      // force reflow to reset animation
+      void truck.offsetWidth;
+      percentSpan.textContent = '0%';
+    }
+  });
+})();
