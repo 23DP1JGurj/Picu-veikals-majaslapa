@@ -110,8 +110,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const truck = document.querySelector('.truck');
   const percentSpan = truck.querySelector('.percent');
 
-  const fileUrl = 'src/app/app.zip'; 
-  const fileName = 'app.zip';
+  const fileUrl = 'src/app/Picu-veikals-main.zip'; 
+  const fileName = 'Picu-veikals-main.zip';
 
   btn.addEventListener('click', () => {
     btn.disabled = true;
@@ -181,24 +181,30 @@ document.addEventListener('DOMContentLoaded', () => {
 })();
 
 document.addEventListener('DOMContentLoaded', () => {
-  const slider = document.querySelector('.guide-slider .slides-wrapper');
-  const slides = Array.from(slider.children);
-  const prevBtn = document.querySelector('.guide-slider .prev');
-  const nextBtn = document.querySelector('.guide-slider .next');
+  const wrapper = document.querySelector('#guide .slides-wrapper');
+  const slides = Array.from(wrapper.children);
+  const prevBtn = document.querySelector('#guide .slider-nav.prev');
+  const nextBtn = document.querySelector('#guide .slider-nav.next');
   let currentIndex = 0;
 
-  function updateSlider() {
-    const offset = -currentIndex * 100;
-    slider.style.transform = `translateX(${offset}%)`;
+  function showSlide(index) {
+    const slideWidth = slides[0].getBoundingClientRect().width;
+    wrapper.style.transform = `translateX(-${slideWidth * index}px)`;
   }
 
   prevBtn.addEventListener('click', () => {
     currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-    updateSlider();
+    showSlide(currentIndex);
   });
 
   nextBtn.addEventListener('click', () => {
     currentIndex = (currentIndex + 1) % slides.length;
-    updateSlider();
+    showSlide(currentIndex);
   });
+
+  // Обновляем позицию при ресайзе
+  window.addEventListener('resize', () => {
+    showSlide(currentIndex);
+    });
+    
 });
