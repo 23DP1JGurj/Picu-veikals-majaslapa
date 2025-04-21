@@ -1,0 +1,12 @@
+{
+    "name": "pizza-shop-reviews",
+    "version": "1.0.0",
+    "description": "API для отзывов PizzaShop",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js"
+    },
+    "dependencies": {
+        "express": "^4.21.2"
+    }
+}

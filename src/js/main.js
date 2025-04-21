@@ -208,42 +208,60 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
+  const sliderContainer = document.querySelector('#guide .guide-slider');
+  const wrapper = document.querySelector('#guide .slides-wrapper');
+  const slides = Array.from(wrapper.children);
+  let currentIndex = 0;
+
+  function showSlide(index) {
+    const width = sliderContainer.clientWidth;
+    wrapper.style.transform = `translateX(-${width * index}px)`;
+  }
+
+  document.querySelector('#guide .slider-nav.prev')
+    .addEventListener('click', () => { currentIndex = (currentIndex - 1 + slides.length) % slides.length; showSlide(currentIndex); });
+  document.querySelector('#guide .slider-nav.next')
+    .addEventListener('click', () => { currentIndex = (currentIndex + 1) % slides.length; showSlide(currentIndex); });
+  window.addEventListener('resize', () => showSlide(currentIndex));
+  showSlide(0);
+
   const openBtn = document.getElementById('open-reviews');
   const closeBtn = document.getElementById('close-reviews');
   const reviewsMenu = document.getElementById('reviews-menu');
+  const listEl = document.querySelector('.reviews-list');
+  const form = document.querySelector('.new-review-form');
 
-openBtn.addEventListener('click', () => {
-if (reviewsMenu.classList.contains('open')) {
-  reviewsMenu.classList.remove('open');
-} else {
-  reviewsMenu.classList.add('open');
-}
-});
+  async function fetchReviews() {
+    const res = await fetch('/api/reviews');
+    const reviews = await res.json();
+    listEl.innerHTML = reviews
+      .map(r => `<div class="review-item">${r.text}<br><small>${new Date(r.date).toLocaleString()}</small></div>`)
+      .join('');
+  }
 
-  closeBtn.addEventListener('click', () => {
-    reviewsMenu.classList.remove('open');
-  });
-  closeBtn.addEventListener('click', () => {
-    reviewsMenu.classList.remove('open');
-  });
-
+  openBtn.addEventListener('click', () => reviewsMenu.classList.toggle('open'));
+  closeBtn.addEventListener('click', () => reviewsMenu.classList.remove('open'));
   document.addEventListener('click', e => {
     if (reviewsMenu.classList.contains('open') && !reviewsMenu.contains(e.target) && e.target !== openBtn) {
       reviewsMenu.classList.remove('open');
     }
   });
-
-  reviewsMenu.addEventListener('wheel', e => {
-    e.stopPropagation();
-  }, { passive: false });
-  document.querySelector('main').addEventListener('wheel', e => {
-    if (!reviewsMenu.classList.contains('open')) return;
-    e.stopPropagation();
+  reviewsMenu.addEventListener('wheel', e => e.stopPropagation(), { passive: false });
+  document.querySelector('main')?.addEventListener('wheel', e => {
+    if (reviewsMenu.classList.contains('open')) e.stopPropagation();
   }, { passive: false });
 
-  document.querySelector('.new-review-form').addEventListener('submit', e => {
+  form.addEventListener('submit', async e => {
     e.preventDefault();
-    alert('Спасибо за ваш отзыв!');
-    e.target.querySelector('textarea').value = '';
+    const text = form.review.value.trim(); if (!text) return;
+    await fetch('/api/reviews', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text })
+    });
+    form.review.value = '';
+    fetchReviews();
   });
+
+  fetchReviews();
 });
