@@ -202,9 +202,48 @@ document.addEventListener('DOMContentLoaded', () => {
     showSlide(currentIndex);
   });
 
-  // Обновляем позицию при ресайзе
   window.addEventListener('resize', () => {
     showSlide(currentIndex);
     });
-    
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const openBtn = document.getElementById('open-reviews');
+  const closeBtn = document.getElementById('close-reviews');
+  const reviewsMenu = document.getElementById('reviews-menu');
+
+openBtn.addEventListener('click', () => {
+if (reviewsMenu.classList.contains('open')) {
+  reviewsMenu.classList.remove('open');
+} else {
+  reviewsMenu.classList.add('open');
+}
+});
+
+  closeBtn.addEventListener('click', () => {
+    reviewsMenu.classList.remove('open');
+  });
+  closeBtn.addEventListener('click', () => {
+    reviewsMenu.classList.remove('open');
+  });
+
+  document.addEventListener('click', e => {
+    if (reviewsMenu.classList.contains('open') && !reviewsMenu.contains(e.target) && e.target !== openBtn) {
+      reviewsMenu.classList.remove('open');
+    }
+  });
+
+  reviewsMenu.addEventListener('wheel', e => {
+    e.stopPropagation();
+  }, { passive: false });
+  document.querySelector('main').addEventListener('wheel', e => {
+    if (!reviewsMenu.classList.contains('open')) return;
+    e.stopPropagation();
+  }, { passive: false });
+
+  document.querySelector('.new-review-form').addEventListener('submit', e => {
+    e.preventDefault();
+    alert('Спасибо за ваш отзыв!');
+    e.target.querySelector('textarea').value = '';
+  });
 });

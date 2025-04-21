@@ -135,9 +135,24 @@ ________________________________________________________________________________
     </section>
 
     <section id="contacts" class="section wide">
-      <div class="section-content">
+      <div class="section-content contacts-content">
         <h2 data-translate="contacts.title">Kontakti</h2>
-        <p data-translate="contacts.content">Saturs šeit...</p>
+        <div class="contact-lines">
+          <p>Developer 1: +371 123-4567, dev1@example.com, Rīga, LV-1001</p>
+          <p>Developer 2: +371 987-6543, dev2@example.com, Jūrmala, LV-2010</p>
+        </div>
+        <button id="open-reviews" class="reviews-btn">Atsauksmes</button>
+      </div>
+      <div id="reviews-menu" class="reviews-menu">
+        <button id="close-reviews" class="close-btn" aria-label="Close reviews">x</button>
+        <div class="reviews-list">
+          <p>Atsauksme1</p>
+          <p>Atsauksme2</p>
+        </div>
+        <form class="new-review-form">
+          <textarea placeholder="Jūsu atsauksme…"></textarea>
+          <button type="submit">Nosūtīt</button>
+        </form>
       </div>
     </section>
   </main>
