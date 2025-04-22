@@ -705,11 +705,13 @@ body[data-theme="light"] #download-btn {
   padding: 2rem;
   text-align: center;
 }
+
 .contact-lines p {
   margin: 0.5rem 0;
   color: var(--text-color);
   font-size: 1rem;
 }
+
 .reviews-btn {
   margin-top: 1.5rem;
   padding: 0.75rem 1.5rem;
@@ -720,6 +722,7 @@ body[data-theme="light"] #download-btn {
   border: 1px solid var(--mini-outline);
   border-radius: 0.5rem;
 }
+
 .reviews-menu {
   position: fixed;
   top: 0;
@@ -735,9 +738,11 @@ body[data-theme="light"] #download-btn {
   transition: left 0.3s ease;
   z-index: 1500;
 }
+
 .reviews-menu.open {
   left: 0;
 }
+
 .close-btn {
   position: absolute;
   top: 0.5rem;
@@ -748,16 +753,19 @@ body[data-theme="light"] #download-btn {
   cursor: pointer;
   color: var(--text-color);
 }
+
 .reviews-list {
   margin-top: 2rem;
   padding-right: 0.5rem;
 }
+
 .reviews-list .review-item {
   margin-bottom: 1rem;
   color: var(--text-color);
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   padding-bottom: 0.5rem;
 }
+
 .new-review-form {
   position: sticky;
   bottom: 0;
@@ -768,6 +776,7 @@ body[data-theme="light"] #download-btn {
   background: rgba(0, 0, 0, 0.1);
   padding: 0.5rem;
 }
+
 .new-review-form textarea {
   width: 100%;
   height: 80px;
@@ -776,6 +785,7 @@ body[data-theme="light"] #download-btn {
   border: 1px solid var(--mini-outline);
   border-radius: 0.25rem;
 }
+
 .new-review-form button {
   align-self: flex-end;
   padding: 0.5rem 1rem;

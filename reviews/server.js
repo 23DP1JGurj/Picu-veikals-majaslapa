@@ -29,6 +29,5 @@ app.post('/api/reviews', (req, res) => {
 app.use(express.static(path.join(__dirname, '..', 'src')));
 app.use(express.static(path.join(__dirname, '..')));
 
-// Запуск сервера
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
