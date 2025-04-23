@@ -224,44 +224,101 @@ document.addEventListener('DOMContentLoaded', () => {
     .addEventListener('click', () => { currentIndex = (currentIndex + 1) % slides.length; showSlide(currentIndex); });
   window.addEventListener('resize', () => showSlide(currentIndex));
   showSlide(0);
+});
 
-  const openBtn = document.getElementById('open-reviews');
-  const closeBtn = document.getElementById('close-reviews');
-  const reviewsMenu = document.getElementById('reviews-menu');
-  const listEl = document.querySelector('.reviews-list');
-  const form = document.querySelector('.new-review-form');
+document.addEventListener('DOMContentLoaded', () => {
+  const starContainer = document.querySelector('.star-rating');
+  let selectedRating = 0;
 
-  async function fetchReviews() {
-    const res = await fetch('/api/reviews');
-    const reviews = await res.json();
-    listEl.innerHTML = reviews
-      .map(r => `<div class="review-item">${r.text}<br><small>${new Date(r.date).toLocaleString()}</small></div>`)
-      .join('');
+  function highlightStars(count) {
+    starContainer.querySelectorAll('span').forEach(span => {
+      const v = +span.dataset.value;
+      if (v <= count) {
+        span.textContent = '★';
+        span.classList.add('selected');
+      } else {
+        span.textContent = '☆';
+        span.classList.remove('selected');
+      }
+    });
   }
 
-  openBtn.addEventListener('click', () => reviewsMenu.classList.toggle('open'));
-  closeBtn.addEventListener('click', () => reviewsMenu.classList.remove('open'));
-  document.addEventListener('click', e => {
-    if (reviewsMenu.classList.contains('open') && !reviewsMenu.contains(e.target) && e.target !== openBtn) {
-      reviewsMenu.classList.remove('open');
+  starContainer.addEventListener('mouseover', e => {
+    if (e.target.dataset.value) {
+      highlightStars(+e.target.dataset.value);
     }
   });
-  reviewsMenu.addEventListener('wheel', e => e.stopPropagation(), { passive: false });
-  document.querySelector('main')?.addEventListener('wheel', e => {
-    if (reviewsMenu.classList.contains('open')) e.stopPropagation();
-  }, { passive: false });
+  starContainer.addEventListener('mouseout', () => highlightStars(selectedRating));
+  starContainer.addEventListener('click', e => {
+    if (e.target.dataset.value) {
+      selectedRating = +e.target.dataset.value;
+      highlightStars(selectedRating);
+    }
+  });
 
+  const form = document.querySelector('.new-review-form');
   form.addEventListener('submit', async e => {
     e.preventDefault();
-    const text = form.review.value.trim(); if (!text) return;
+    const name = form.name.value.trim();
+    const text = form.text.value.trim();   
+  
+    if (!name || !text || selectedRating === 0) {
+      alert('Lūdzu, ievadiet vārdu, tekstu un vērtējumu!');
+      return;
+    }
+  
+    const payload = { name, text, rating: selectedRating };
     await fetch('/api/reviews', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ text })
+      body: JSON.stringify(payload)
     });
-    form.review.value = '';
+  
+    form.name.value = '';
+    form.text.value = '';                
+    selectedRating = 0;
+    highlightStars(0);
     fetchReviews();
   });
 
+  const listEl = document.querySelector('.reviews-list');
+  async function fetchReviews() {
+    const res = await fetch('/api/reviews');
+    const reviews = await res.json();
+    listEl.innerHTML = reviews.map(r => {
+      const date = new Date(r.date).toLocaleString();
+      const stars = Array.from({ length: 5 }, (_, i) =>
+        `<span class="${i < r.rating ? 'selected' : ''}">★</span>`
+      ).join('');
+      return `
+        <div class="review-item">
+          <strong>${r.name}</strong> <em>${date}</em>
+          <div class="display-stars">${stars}</div>
+          <p>${r.text}</p>
+        </div>
+      `;
+    }).join('');
+  }
+
   fetchReviews();
+
+    const openBtn = document.getElementById('open-reviews');
+    const closeBtn = document.getElementById('close-reviews');
+    const reviewsMenu = document.getElementById('reviews-menu');
+  
+    openBtn.addEventListener('click', () => reviewsMenu.classList.toggle('open'));
+    closeBtn.addEventListener('click', () => reviewsMenu.classList.remove('open'));
+  
+    document.addEventListener('click', e => {
+      if (reviewsMenu.classList.contains('open')
+          && !reviewsMenu.contains(e.target)
+          && e.target !== openBtn) {
+        reviewsMenu.classList.remove('open');
+      }
+    });
+  
+    reviewsMenu.addEventListener('wheel', e => e.stopPropagation(), { passive: false });
+    document.querySelector('main').addEventListener('wheel', e => {
+      if (reviewsMenu.classList.contains('open')) e.stopPropagation();
+    }, { passive: false });
 });

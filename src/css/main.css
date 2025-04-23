@@ -795,3 +795,26 @@ body[data-theme="light"] #download-btn {
   border: none;
   border-radius: 0.25rem;
 }
+
+.display-stars {
+  font-size: 1.2rem;
+  margin: 0.2rem 0;
+}
+
+.display-stars span {
+  margin-right: 2px;
+  color: #ccc;         
+}
+
+.display-stars span.selected {
+  color: #f5b301;      
+}
+
+.star-rating span {
+  font-size: 1.5rem;
+  color: #ccc;
+}
+
+.star-rating span.selected {
+  color: #f5b301;
+}

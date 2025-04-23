@@ -21,7 +21,12 @@ app.get('/api/reviews', (req, res) => {
 
 app.post('/api/reviews', (req, res) => {
   const reviews = readReviews();
-  reviews.push({ text: req.body.text, date: new Date().toISOString() });
+  reviews.push({
+    name: req.body.name || 'Anonymous',
+    text: req.body.text,
+    rating: Number(req.body.rating) || 0,
+    date: new Date().toISOString()
+  });
   writeReviews(reviews);
   res.status(201).json({ success: true });
 });

@@ -147,7 +147,15 @@ ________________________________________________________________________________
         <button id="close-reviews" class="close-btn" aria-label="Close reviews">x</button>
         <div class="reviews-list"></div>
         <form class="new-review-form">
-          <textarea name="review" placeholder="Jūsu atsauksme…"></textarea>
+          <input type="text" name="name" placeholder="Jūsu vārds…" required />
+          <textarea name="text" placeholder="Jūsu atsauksme…" required></textarea>
+          <div class="star-rating">
+            <span data-value="1">☆</span>
+            <span data-value="2">☆</span>
+            <span data-value="3">☆</span>
+            <span data-value="4">☆</span>
+            <span data-value="5">☆</span>
+          </div>
           <button type="submit">Nosūtīt</button>
         </form>
       </div>
