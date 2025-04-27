@@ -33,6 +33,7 @@ body {
   --slide-invert: 0;
   --truck-invert: 1;
   --mini-outline: #c1976d;
+  --reviews-menu: #29343d;
 
   --transition-theme: 
   background-color 0.5s ease, 
@@ -56,8 +57,8 @@ body {
 
 [data-theme="light"] {
   --bg-color: #FFFFFF;
-  --navbar-text-color: #FF0000;
-  --navbar-bg: #FFFFFF;
+  --navbar-text-color: #000000;
+  --navbar-bg: #fde1b9; 
   --section-bg: #fde1b9;
   --text-color: #000000;
   --navbar-footer-bg: #fde1b9; 
@@ -70,7 +71,8 @@ body {
   --truck-invert: 0;
   --slide-invert: 1;
   --mini-outline: #fb9300;
-  
+  --reviews-menu: #ffebcf;
+
 }
 
 [data-theme="light"] footer.full-width p {
@@ -78,7 +80,7 @@ body {
 }
 
 [data-theme="light"] .navbar {
-  --navbar-text-color: #FF0000; 
+  --navbar-text-color: #000000; 
   --navbar-hover-opacity: 0.8; 
 }
 
@@ -150,17 +152,12 @@ footer.full-width,
 .navbar-links a {
   color: white;
   font-family: 'Oswald', sans-serif;
-  font-size: 15px;
+  font-size: 17px;
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   transition: opacity 0.3s;
   padding: 0.5rem 1rem;
-}
-
-.navbar-links a:hover {
-  opacity: 0.8;
-  color: rgba(255, 0, 0, 0.8);
 }
 
 .navbar-controls {
@@ -730,13 +727,13 @@ body[data-theme="light"] #download-btn {
   width: 30vw;
   max-width: 400px;
   height: 100vh;
-  background: rgba(128, 0, 128, 0.2);
   backdrop-filter: blur(4px);
   padding: 1rem;
   box-sizing: border-box;
   overflow-y: auto;
   transition: left 0.3s ease;
   z-index: 1500;
+  background: var(--reviews-menu);
 }
 
 .reviews-menu.open {
