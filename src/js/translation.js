@@ -32,7 +32,11 @@ window.translations = {
         },
         "contacts": {
           "title": "Kontakti",
-          "content": "Jautājumu gadījumā sazinieties: support@pizzashop.lv"
+          "content": "Atsauksmes"
+        },
+        "reviews": {
+        "name": "Jūsu vārds…",
+        "text": "Jūsu atsauksme…"
         }
       },
       "footer": "© 2025 PizzaShop Console App"
@@ -70,7 +74,11 @@ window.translations = {
         },
         "contacts": {
           "title": "Contacts",
-          "content": "For questions contact: support@pizzashop.com"
+          "content": "Reviews"
+        },
+        "reviews": {
+          "name": "Your name…",
+          "text": "Your review…"
         }
       },
       "footer": "© 2025 PizzaShop Console App"

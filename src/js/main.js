@@ -33,18 +33,32 @@ function updateContent(lang) {
   document.querySelector('.hero-subtitle').textContent = translations.hero.subtitle;
 
   document.querySelectorAll('[data-translate]').forEach(element => {
-    const key = element.dataset.translate;
+    const key = element.dataset.translate;   
     const [section, field] = key.split('.');
-    element.textContent = translations.sections[section][field];
+    const value = translations.sections[section][field];
+  
+    if ('placeholder' in element) {
+      element.placeholder = value;
+    } else {
+      element.textContent = value;
+    }
   });
 
   document.querySelector('footer p').textContent = translations.footer;
 }
 
 languageSwitcher.addEventListener('click', () => {
+  const reviewsMenu = document.getElementById('reviews-menu');
+  const wasOpen = reviewsMenu.classList.contains('open');
+
   currentLang = currentLang === 'lv' ? 'en' : 'lv';
   localStorage.setItem('language', currentLang);
+
   updateContent(currentLang);
+
+  if (wasOpen) {
+    reviewsMenu.classList.add('open');
+  }
 });
 
 const savedLang = localStorage.getItem('language') || 'lv';
@@ -310,9 +324,15 @@ document.addEventListener('DOMContentLoaded', () => {
     closeBtn.addEventListener('click', () => reviewsMenu.classList.remove('open'));
   
     document.addEventListener('click', e => {
-      if (reviewsMenu.classList.contains('open')
-          && !reviewsMenu.contains(e.target)
-          && e.target !== openBtn) {
+      const reviewsMenu = document.getElementById('reviews-menu');
+      const openBtn    = document.getElementById('open-reviews');
+      const langBtn    = document.querySelector('.language-switcher');
+      if (
+        reviewsMenu.classList.contains('open') &&
+        !reviewsMenu.contains(e.target) &&
+        e.target !== openBtn &&
+        e.target !== langBtn
+      ) {
         reviewsMenu.classList.remove('open');
       }
     });
