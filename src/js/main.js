@@ -295,6 +295,13 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchReviews();
   });
 
+  const clearBtn = document.getElementById('clear-review-btn');
+  clearBtn.addEventListener('click', () => {
+    form.reset();
+    selectedRating = 0;
+    highlightStars(0);
+  });
+
   const listEl = document.querySelector('.reviews-list');
   async function fetchReviews() {
     const res = await fetch('/api/reviews');
