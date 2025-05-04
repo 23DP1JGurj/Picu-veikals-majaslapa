@@ -91,35 +91,76 @@ document.addEventListener('DOMContentLoaded', () => {
     { left: 137, right: -2 }
   ];
 
-  miniSections.forEach((section, index) => {
-    const wrapper = section.parentElement;
-    section.addEventListener('mouseenter', () => {
-      wrappers.forEach(w => w.style.flex = '1');
-      const settings = expansionSettings[index];
-      const flexVal = 1 + (settings.left + settings.right) / 100;
-      wrapper.style.flex = flexVal;
+  if (window.innerWidth > 768) {
+    miniSections.forEach((section, index) => {
+      const wrapper = section.parentElement;
+      section.addEventListener('mouseenter', () => {
+        wrappers.forEach(w => w.style.flex = '1');
+        const settings = expansionSettings[index];
+        const flexVal = 1 + (settings.left + settings.right) / 100;
+        wrapper.style.flex = flexVal;
 
-      section.style.setProperty('--expand-left', `${settings.left}%`);
-      section.style.setProperty('--expand-right', `${settings.right}%`);
+        section.style.setProperty('--expand-left', `${settings.left}%`);
+        section.style.setProperty('--expand-right', `${settings.right}%`);
 
-      section.style.width = `calc(100% + ${settings.left}% + ${settings.right}%)`;
-      section.style.left  = `-${settings.left}%`;
-      section.classList.add('expanded');
+        section.style.width = `calc(100% + ${settings.left}% + ${settings.right}%)`;
+        section.style.left = `-${settings.left}%`;
+        section.classList.add('expanded');
+      });
+
+      section.addEventListener('mouseleave', () => {
+        wrappers.forEach(w => w.style.flex = '1');
+        section.style.width = '100%';
+        section.style.left = '0';
+        section.classList.remove('expanded');
+      });
     });
-    section.addEventListener('mouseleave', () => {
-      wrappers.forEach(w => w.style.flex = '1');
-      section.style.width = '100%';
-      section.style.left = '0';
-      section.classList.remove('expanded');
+  } else {
+    miniSections.forEach(section => {
+      section.addEventListener('click', () => {
+        section.classList.toggle('expanded');
+      });
     });
-  });
+
+    document.addEventListener('click', e => {
+      if (!e.target.closest('.mini-section')) {
+        miniSections.forEach(section => {
+          section.classList.remove('expanded');
+        });
+      }
+    });
+  }
+
+  /*
+    } else {
+    miniSections.forEach(section => {
+      section.addEventListener('click', () => {
+        section.classList.toggle('expanded');
+      });
+    });
+  }
+    ЧТО БЫ ОСТАВАЛСЯ ТЕКСТ
+    */ 
 });
 })();
 
 
 (function() {
-  const btn = document.getElementById('download-btn');
   const wrapper = document.querySelector('.download-wrapper');
+  
+  if (window.innerWidth <= 375) {
+    wrapper.classList.add('mobile');
+  }
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth <= 375) {
+      wrapper.classList.add('mobile');
+    } else {
+      wrapper.classList.remove('mobile');
+    }
+  });
+
+  const btn = document.getElementById('download-btn');
   const road = document.querySelector('.road');
   const truck = document.querySelector('.truck');
   const percentSpan = truck.querySelector('.percent');
@@ -195,6 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
 })();
 
 document.addEventListener('DOMContentLoaded', () => {
+  const sliderContainer = document.querySelector('#guide .guide-slider');
   const wrapper = document.querySelector('#guide .slides-wrapper');
   const slides = Array.from(wrapper.children);
   const prevBtn = document.querySelector('#guide .slider-nav.prev');
@@ -202,7 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentIndex = 0;
 
   function showSlide(index) {
-    const slideWidth = slides[0].getBoundingClientRect().width;
+    const slideWidth = sliderContainer.clientWidth;
     wrapper.style.transform = `translateX(-${slideWidth * index}px)`;
   }
 
@@ -216,27 +258,8 @@ document.addEventListener('DOMContentLoaded', () => {
     showSlide(currentIndex);
   });
 
-  window.addEventListener('resize', () => {
-    showSlide(currentIndex);
-    });
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-  const sliderContainer = document.querySelector('#guide .guide-slider');
-  const wrapper = document.querySelector('#guide .slides-wrapper');
-  const slides = Array.from(wrapper.children);
-  let currentIndex = 0;
-
-  function showSlide(index) {
-    const width = sliderContainer.clientWidth;
-    wrapper.style.transform = `translateX(-${width * index}px)`;
-  }
-
-  document.querySelector('#guide .slider-nav.prev')
-    .addEventListener('click', () => { currentIndex = (currentIndex - 1 + slides.length) % slides.length; showSlide(currentIndex); });
-  document.querySelector('#guide .slider-nav.next')
-    .addEventListener('click', () => { currentIndex = (currentIndex + 1) % slides.length; showSlide(currentIndex); });
   window.addEventListener('resize', () => showSlide(currentIndex));
+
   showSlide(0);
 });
 
