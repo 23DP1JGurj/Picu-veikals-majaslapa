@@ -210,6 +210,7 @@ footer.full-width,
   background-color: var(--hero-bg, #161e24);
 }
 
+
 [data-theme="light"] {
   color: var(--text-color);
 }
@@ -261,7 +262,7 @@ footer.full-width,
 }
 
 main {
-  margin-top: 75px;
+  margin-top: var(--navbar-height);
 }
 
 .section {
@@ -714,16 +715,6 @@ body[data-theme="light"] #download-btn {
   grid-column: 1 / -1;
 }
 
-/* УБРАТЬ ЧТО БЫ ИЗМЕНИТЬ РАЗМЕРЫ КНОПОК
-.new-review-form > button[type="submit"] {
-  justify-self: start;
-}
-
-.new-review-form > button[type="button"]#clear-review-btn {
-  justify-self: end;
-}
-*/
-
 .new-review-form textarea {
   width: 100%;
   height: 80px;
@@ -787,12 +778,27 @@ body[data-theme="light"] #download-btn {
 
 @media (max-width: 768px) {
   main {
-    margin-top: 100px; 
+    margin-top: var(--navbar-height);
   }
 
   .navbar {
-    flex-wrap: wrap;
+    flex-direction: column;   
+    align-items: center;   
     padding: 0.5rem 1rem;
+  }
+
+  .navbar-logo,
+  .navbar-controls {
+    width: 100%;             
+    display: flex;
+    justify-content: center;    
+    margin: 0.25rem 0;         
+  }
+
+  .navbar-links {
+    width: 100%;              
+    justify-content: center;    
+    margin: 0.25rem 0;          
   }
 
   .section.narrow .section-content {
@@ -1019,4 +1025,8 @@ body[data-theme="light"] #download-btn {
     z-index: 10;
   }
 }
+}
+
+section {
+  scroll-margin-top: var(--navbar-height);
 }

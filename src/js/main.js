@@ -84,12 +84,72 @@ document.addEventListener('DOMContentLoaded', () => {
 
   wrappers.forEach(w => w.style.transition = 'flex 0.4s ease');
 
-  const expansionSettings = [
-    { left: 0, right: 137 },
-    { left: 47, right: 91 },
-    { left: 91.5, right: 45.5 },
-    { left: 137, right: -2 }
-  ];
+  function getExpansionSettings() {
+    const w = window.innerWidth;
+    if (w >= 2000) {
+      return [
+        { left:   0, right: 137 },
+        { left:  47, right:  91 },
+        { left:  91.5, right: 45.5 },
+        { left: 138, right:  -2 }
+      ];
+    } else if (w >= 1800) {
+        return [
+          { left:   0, right: 139 },
+          { left:  47, right:  93 },
+          { left:  93, right: 46.5 },
+          { left: 140, right:  -2 }
+        ];
+    } else if (w >= 1600) {
+        return [
+          { left:   0, right: 141 },
+          { left:  47, right:  94 },
+          { left:  94, right: 46.5 },
+          { left: 141, right:  -2 }
+        ];
+    } else if (w >= 1400) {
+      return [
+        { left:   0, right: 142 },
+        { left:  49, right:  95 },
+        { left:  94, right:  48 },
+        { left: 142, right:   0 }
+      ];
+    } else if (w >= 1200) {
+      return [
+        { left:   0, right: 144 },
+        { left:  51, right:  95 },
+        { left:  97, right:  48 },
+        { left: 145, right:   0 }
+      ];
+    } else if (w >= 1000) {
+      return [
+        { left:   0, right:  147 },
+        { left:  50, right:  100 },
+        { left:  98, right:  49 },
+        { left:  148, right:   0 }
+      ];
+    } else if (w >= 820) {
+      return [
+        { left:   0, right:  152 },
+        { left:  52, right:  101 },
+        { left:  100, right:  53 },
+        { left:  152, right:   0 }
+      ];
+    } else {
+      return [
+        { left:   0, right:  156 },
+        { left:  52, right:  104 },
+        { left:  105, right:  53 },
+        { left:  156, right:   0 }
+      ];
+    }
+  }
+
+  let expansionSettings = getExpansionSettings();
+
+  window.addEventListener('resize', () => {
+    expansionSettings = getExpansionSettings();
+  });
 
   if (window.innerWidth > 768) {
     miniSections.forEach((section, index) => {
@@ -130,17 +190,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-
-  /*
-    } else {
-    miniSections.forEach(section => {
-      section.addEventListener('click', () => {
-        section.classList.toggle('expanded');
-      });
-    });
-  }
-    ЧТО БЫ ОСТАВАЛСЯ ТЕКСТ
-    */ 
 });
 })();
 
@@ -371,4 +420,25 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('main').addEventListener('wheel', e => {
       if (reviewsMenu.classList.contains('open')) e.stopPropagation();
     }, { passive: false });
+});
+
+function updateNavbarHeight() {
+  const nav = document.querySelector('.navbar');
+  if (!nav) return;
+  const h = nav.offsetHeight;
+  document.documentElement.style.setProperty('--navbar-height', `${h}px`);
+}
+
+window.addEventListener('DOMContentLoaded', updateNavbarHeight);
+window.addEventListener('resize', updateNavbarHeight);
+updateNavbarHeight(); 
+
+document.addEventListener('DOMContentLoaded', () => {
+  const homeLink = document.querySelector('a[href="#start"]');
+  if (homeLink) {
+    homeLink.addEventListener('click', e => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
 });
