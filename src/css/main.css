@@ -1217,3 +1217,53 @@ section {
 .stylish-form .form-row:nth-of-type(1) {
   margin-bottom: 2.5rem; 
 }
+
+.guide-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; 
+  gap: 1rem;
+}
+
+.guide-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.download-button {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 300;
+  letter-spacing: 1px;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  border: 1px solid var(--mini-outline);
+  background-color: var(--section-bg);
+  color: var(--text-color);
+  cursor: pointer;
+  transition: background-color 0.3s ease,
+              color 0.3s ease,
+              border-color 0.3s ease,
+              opacity 0.3s ease;
+}
+
+#guide .section-content h2 {
+  font-size: 2rem;      
+  letter-spacing: 1px;  
+  text-align: center;  
+  margin: 0 auto 4.5rem;
+  max-width: 100%;      
+  display: block;       
+}
+
+#guide .guide-header {
+  justify-content: center; 
+  text-align: center;    
+}
+
+#guide .guide-header h2 {
+  font-size: 2rem;    
+  margin: 0;           
+  width: 100%;          
+  text-align: center;   
+}

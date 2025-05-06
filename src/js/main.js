@@ -324,6 +324,38 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
+  const btnGuide = document.getElementById('download-guide-btn');
+  if (!btnGuide) return;
+
+  const fileUrl = btnGuide.dataset.url;
+  const fileName = fileUrl.split('/').pop();
+
+  btnGuide.addEventListener('click', () => {
+    btnGuide.disabled = true;
+    fetch(fileUrl)
+      .then(res => {
+        if (!res.ok) throw new Error('Network error');
+        return res.blob();
+      })
+      .then(blob => {
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      })
+      .catch(err => {
+        alert('Kļūda lejupielādējot failu: ' + err.message);
+      })
+      .finally(() => {
+        btnGuide.disabled = false;
+      });
+  });
+});
+
+
+document.addEventListener('DOMContentLoaded', () => {
   const starContainer = document.querySelector('.star-rating');
   let selectedRating = 0;
 
