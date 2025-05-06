@@ -13,8 +13,8 @@
 
 ## 👥 Autori
 
-- **Rodions Poplavskis** <br> [![GitHub](https://img.shields.io/badge/GitHub-%23121011.svg?logo=github&logoColor=white)](https://github.com/23DP1RPopl)
 - **Jegors Gurjevs** <br> [![GitHub](https://img.shields.io/badge/GitHub-%23121011.svg?logo=github&logoColor=white)](https://github.com/23DP1JGurj)
+- **Rodions Poplavskis** <br> [![GitHub](https://img.shields.io/badge/GitHub-%23121011.svg?logo=github&logoColor=white)](https://github.com/23DP1RPopl)
 
 ## 📝 Apraksts
 
@@ -97,8 +97,8 @@ Musu programma [https://github.com/23DP1JGurj/Picu-veikals-majaslapa](https://gi
 
 ## 👥 Authors
 
-- **Rodions Poplavskis** <br> [![GitHub](https://img.shields.io/badge/GitHub-%23121011.svg?logo=github&logoColor=white)](https://github.com/23DP1RPopl)
 - **Jegors Gurjevs** <br> [![GitHub](https://img.shields.io/badge/GitHub-%23121011.svg?logo=github&logoColor=white)](https://github.com/23DP1JGurj)
+- **Rodions Poplavskis** <br> [![GitHub](https://img.shields.io/badge/GitHub-%23121011.svg?logo=github&logoColor=white)](https://github.com/23DP1RPopl)
 
 ## 📝 Description
 
