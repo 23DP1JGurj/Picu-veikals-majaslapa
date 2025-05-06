@@ -91,7 +91,7 @@
         <div class="section-content">
           <h2 data-translate="download.title">Lejupielādēt</h2>
           <div class="download-wrapper">
-            <button id="download-btn" data-translate="download.button">Lejupielādēt programmu</button>
+            <button id="download-btn" data-translate="download.button" data-url="https://github.com/23DP1JGurj/Picu-veikals">Lejupielādēt programmu</button>
             <div class="road">
               <pre class="ascii-road">
                    .|                                 .|
@@ -151,19 +151,55 @@ ________________________________________________________________________________
       <div id="reviews-menu" class="reviews-menu">
         <button id="close-reviews" class="close-btn" aria-label="Close reviews">x</button>
         <div class="reviews-list"></div>
-        <form class="new-review-form">
-          <input type="text" name="name" data-translate="reviews.name" required />
-          <textarea name="text" data-translate="reviews.text" required></textarea>
-          <div class="star-rating">
-            <span data-value="1">☆</span>
-            <span data-value="2">☆</span>
-            <span data-value="3">☆</span>
-            <span data-value="4">☆</span>
-            <span data-value="5">☆</span>
-          </div>
-          <button type="button" id="clear-review-btn">Notīrīt</button>
-          <button type="submit">Nosūtīt</button>
-        </form>
+
+  <form class="stylish-form new-review-form">
+    <div class="form-row star-submit">
+      <div class="input-data">
+        <input
+          type="text"
+          id="review-name"
+          name="name"
+          placeholder=" "
+          required
+        />
+        <label for="review-name" data-translate="reviews.name">Vārds</label>
+        <div class="underline"></div>
+      </div>
+      <div class="star-rating" aria-label="Star rating">
+        <span data-value="1">☆</span>
+        <span data-value="2">☆</span>
+        <span data-value="3">☆</span>
+        <span data-value="4">☆</span>
+        <span data-value="5">☆</span>
+      </div>
+    </div>
+
+
+    <div class="form-row">
+      <div class="input-data">
+        <textarea
+          id="review-text"
+          name="text"
+          rows="4"
+          placeholder=" "
+          required
+        ></textarea>
+        <label for="review-text" data-translate="reviews.text">Jūsu atsauksme</label>
+        <div class="underline"></div>
+      </div>
+    </div>
+
+    <div class="form-row submit-btn">
+      <div class="input-data">
+        <div class="inner"></div>
+        <input type="button" id="clear-review-btn" data-translate="reviews.clear"/>
+      </div>
+      <div class="input-data">
+        <div class="inner"></div>
+        <input type="submit" data-translate="reviews.submit"/>
+      </div>
+    </div>
+  </form>
       </div>
     </section>
   </main>

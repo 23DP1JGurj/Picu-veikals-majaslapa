@@ -32,11 +32,15 @@ window.translations = {
         },
         "contacts": {
           "title": "Kontakti",
+          "dev1": "Izstrādātājs 1: +371 123-4567, dev1@example.com, Rīga, LV-1001",
+          "dev2": "Izstrādātājs 2: +371 987-6543, dev2@example.com, Jūrmala, LV-2010",
           "content": "Atsauksmes"
         },
         "reviews": {
-        "name": "Jūsu vārds…",
-        "text": "Jūsu atsauksme…"
+          "name": "Jūsu vārds…",
+          "text": "Jūsu atsauksme…",
+          "clear": "Notīrīt",
+          "submit": "Nosūtīt"
         }
       },
       "footer": "© 2025 PizzaShop Console App"
@@ -74,11 +78,15 @@ window.translations = {
         },
         "contacts": {
           "title": "Contacts",
+          "dev1": "Developer 1: +371 123-4567, dev1@example.com, Riga, LV-1001",
+          "dev2": "Developer 2: +371 987-6543, dev2@example.com, Jurmala, LV-2010",
           "content": "Reviews"
         },
         "reviews": {
           "name": "Your name…",
-          "text": "Your review…"
+          "text": "Your review…",
+          "clear": "Clear",
+          "submit": "Submit",
         }
       },
       "footer": "© 2025 PizzaShop Console App"

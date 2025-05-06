@@ -9,11 +9,18 @@
   }
 
   themeSwitcher.addEventListener('click', () => {
+    const reviewsMenu = document.getElementById('reviews-menu');
+    const wasOpen = reviewsMenu.classList.contains('open');
+  
     const current = body.getAttribute('data-theme') || 'dark';
     const next = current === 'dark' ? 'light' : 'dark';
     body.setAttribute('data-theme', next);
     localStorage.setItem('theme', next);
     themeSwitcher.textContent = next === 'dark' ? '☀️' : '🌙';
+
+    if (wasOpen) {
+      reviewsMenu.classList.add('open');
+    }
   });
 
 const languageSwitcher = document.querySelector('.language-switcher');
@@ -37,10 +44,14 @@ function updateContent(lang) {
     const [section, field] = key.split('.');
     const value = translations.sections[section][field];
   
-    if ('placeholder' in element) {
-      element.placeholder = value;
+    if (element.tagName === 'INPUT' && (element.type === 'button' || element.type === 'submit')) {
+      element.value = value;                      
+    } else if (element.tagName === 'INPUT' && element.placeholder !== undefined) {
+      element.placeholder = value;                   
+    } else if (element.tagName === 'TEXTAREA') {
+      element.placeholder = value;                
     } else {
-      element.textContent = value;
+      element.textContent = value;                 
     }
   });
 
@@ -406,11 +417,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const reviewsMenu = document.getElementById('reviews-menu');
       const openBtn    = document.getElementById('open-reviews');
       const langBtn    = document.querySelector('.language-switcher');
+      const themeBtn    = document.querySelector('.theme-switcher');
+
       if (
         reviewsMenu.classList.contains('open') &&
         !reviewsMenu.contains(e.target) &&
         e.target !== openBtn &&
-        e.target !== langBtn
+        e.target !== langBtn &&
+        e.target !== themeBtn
       ) {
         reviewsMenu.classList.remove('open');
       }
