@@ -29,6 +29,7 @@ window.translations = {
         "guide": {
           "title": "Lietotāja ceļvedis",
           "content": "Detalizēta lietošanas instrukcija un biežāk uzdotie jautājumi."
+          "button": "Lejupielādēt ceļvedi"
         },
         "contacts": {
           "title": "Kontakti",
@@ -75,6 +76,7 @@ window.translations = {
         "guide": {
           "title": "User Guide",
           "content": "Detailed instructions and frequently asked questions."
+          "button": "Download Guide"
         },
         "contacts": {
           "title": "Contacts",
