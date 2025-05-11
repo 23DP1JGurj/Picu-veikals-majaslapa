@@ -28,7 +28,7 @@ window.translations = {
         },
         "guide": {
           "title": "Lietotāja ceļvedis",
-          "content": "Detalizēta lietošanas instrukcija un biežāk uzdotie jautājumi."
+          "button": "Lejupielādēt ceļvedi"
         },
         "contacts": {
           "title": "Kontakti",
@@ -47,7 +47,7 @@ window.translations = {
     },
     "en": {
       "navbar": {
-        "logo": "PizzaShop",
+        "logo": "Pizza Shop",
         "links": ["Home", "About", "Download", "Guide", "Contacts"],
         "language": "LV"
       },
@@ -74,7 +74,7 @@ window.translations = {
         },
         "guide": {
           "title": "User Guide",
-          "content": "Detailed instructions and frequently asked questions."
+          "button": "Download guide"
         },
         "contacts": {
           "title": "Contacts",

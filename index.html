@@ -14,6 +14,7 @@
     <div class="navbar-logo">
       <span>Picu Veikals</span>
     </div>  
+    <button class="hamburger-btn" aria-label="Atvērt izvēlni">≡</button>
     <nav class="navbar-links">
       <a href="#start" class="nav-link">Sākums</a>
       <a href="#about" class="nav-link">Par programmu</a>
@@ -25,6 +26,16 @@
       <button class="language-switcher">LV</button>
       <button class="theme-switcher">🌙</button>
     </div>  
+    <div class="mobile-nav-overlay">
+      <button class="mobile-nav-close" aria-label="Aizvērt izvēlni">x</button>
+      <nav class="mobile-nav-links">
+        <a href="#start" data-index="0">Sākums</a>
+        <a href="#about" data-index="1">Par programmu</a>
+        <a href="#download" data-index="2">Lejupielādēt</a>
+        <a href="#guide" data-index="3">Lietotāja ceļvedis</a>
+        <a href="#contacts" data-index="4">Kontakti</a>
+      </nav>
+    </div>
   </header>
 
   <main>
@@ -122,8 +133,8 @@ ________________________________________________________________________________
     <section id="guide" class="section narrow">
       <div class="section-content">
         <div class="guide-header">
-          <h2>Lietotāja ceļvedis</h2>
-          <button id="download-guide-btn" data-url="src/guide/guide.zip" class="download-button">
+          <h2 data-translate="guide.title">Lietotāja ceļvedis</h2>
+          <button id="download-guide-btn" data-url="src/guide/guide.zip" class="download-button" data-translate="guide.button">
             Lejupielādēt ceļvedi
           </button>
         </div>

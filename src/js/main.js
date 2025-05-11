@@ -35,6 +35,9 @@ function updateContent(lang) {
   document.querySelectorAll('.navbar-links a').forEach((link, index) => {
     link.textContent = translations.navbar.links[index];
   });
+  document.querySelectorAll('.mobile-nav-links a').forEach((link, index) => {
+    link.textContent = translations.navbar.links[index];
+  });
 
   document.querySelector('.hero-title').textContent = translations.hero.title;
   document.querySelector('.hero-subtitle').textContent = translations.hero.subtitle;
@@ -487,4 +490,41 @@ document.addEventListener('DOMContentLoaded', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const logo = document.querySelector('.navbar-logo');
+  if (logo) {
+    logo.addEventListener('click', e => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const openBtn  = document.querySelector('.hamburger-btn');
+  const closeBtn = document.querySelector('.mobile-nav-close');
+  const overlay  = document.querySelector('.mobile-nav-overlay');
+  const links    = overlay.querySelectorAll('a[href^="#"]');
+
+  function openMenu() {
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  openBtn.addEventListener('click', openMenu);
+  closeBtn.addEventListener('click', closeMenu);
+
+  links.forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  overlay.addEventListener('click', e => {
+    if (e.target === overlay) closeMenu();
+  });
 });
