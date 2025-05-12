@@ -483,13 +483,17 @@ window.addEventListener('resize', updateNavbarHeight);
 updateNavbarHeight(); 
 
 document.addEventListener('DOMContentLoaded', () => {
-  const homeLink = document.querySelector('a[href="#start"]');
-  if (homeLink) {
+  document.querySelectorAll('a[href="#start"]').forEach(homeLink => {
     homeLink.addEventListener('click', e => {
       e.preventDefault();
+      const overlay = document.querySelector('.mobile-nav-overlay');
+      if (overlay?.classList.contains('open')) {
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+      }
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
-  }
+  });
 });
 
 document.addEventListener('DOMContentLoaded', () => {
